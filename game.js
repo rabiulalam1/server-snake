@@ -36,7 +36,7 @@ function createGameState() {
           y: 10,
         },
         vel: {
-          x: 0,
+          x: -1,
           y: 0,
         },
         snake: [
@@ -65,22 +65,52 @@ function gameLoop(state) {
   playerTwo.pos.x += playerTwo.vel.x;
   playerTwo.pos.y += playerTwo.vel.y;
 
-  if (
-    playerOne.pos.x < 0 ||
-    playerOne.pos.x > GRID_SIZE ||
-    playerOne.pos.y < 0 ||
-    playerOne.pos.y > GRID_SIZE
-  ) {
-    return 2;
+  //Boundaries for Player1
+  // if (
+  //   playerOne.pos.x < 0 ||
+  //   playerOne.pos.x > GRID_SIZE ||
+  //   playerOne.pos.y < 0 ||
+  //   playerOne.pos.y > GRID_SIZE
+  // ) {
+  //   return 2;
+  // }
+
+  //Player 1 crossing wall
+  if (playerOne.pos.x > GRID_SIZE) {
+    playerOne.pos.x = 0;
+  }
+  if (playerOne.pos.x < 0) {
+    playerOne.pos.x = GRID_SIZE;
+  }
+  if (playerOne.pos.y > GRID_SIZE) {
+    playerOne.pos.y = 0;
+  }
+  if (playerOne.pos.y < 0) {
+    playerOne.pos.y = GRID_SIZE;
   }
 
-  if (
-    playerTwo.pos.x < 0 ||
-    playerTwo.pos.x > GRID_SIZE ||
-    playerTwo.pos.y < 0 ||
-    playerTwo.pos.y > GRID_SIZE
-  ) {
-    return 1;
+  //Boundaries for Player2
+  // if (
+  //   playerTwo.pos.x < 0 ||
+  //   playerTwo.pos.x > GRID_SIZE ||
+  //   playerTwo.pos.y < 0 ||
+  //   playerTwo.pos.y > GRID_SIZE
+  // ) {
+  //   return 1;
+  // }
+
+  //Player 2 crossing wall
+  if (playerTwo.pos.x > GRID_SIZE) {
+    playerTwo.pos.x = 0;
+  }
+  if (playerTwo.pos.x < 0) {
+    playerTwo.pos.x = GRID_SIZE;
+  }
+  if (playerTwo.pos.y > GRID_SIZE) {
+    playerTwo.pos.y = 0;
+  }
+  if (playerTwo.pos.y < 0) {
+    playerTwo.pos.y = GRID_SIZE;
   }
 
   if (state.food.x === playerOne.pos.x && state.food.y === playerOne.pos.y) {
