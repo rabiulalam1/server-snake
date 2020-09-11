@@ -10,6 +10,7 @@ io.on("connection", (client) => {
   client.on("keydown", handleKeydown);
   client.on("newGame", handleNewGame);
   client.on("joinGame", handleJoinGame);
+
   function handleJoinGame(roomName) {
     const room = io.sockets.adapter.rooms[roomName];
 
