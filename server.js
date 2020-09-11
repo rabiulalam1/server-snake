@@ -10,7 +10,6 @@ io.on("connection", (client) => {
   client.on("keydown", handleKeydown);
   client.on("newGame", handleNewGame);
   client.on("joinGame", handleJoinGame);
-  console.log(client);
   function handleJoinGame(roomName) {
     const room = io.sockets.adapter.rooms[roomName];
 
@@ -40,18 +39,16 @@ io.on("connection", (client) => {
     io.emit("startTimer");
     setTimeout(() => {
       startGameInterval(roomName);
-    }, 2000);
+    }, 3500);
     //startGameInterval(roomName);
   }
 
   function handleNewGame() {
     let roomName = makeId(4);
-    console.log(roomName);
     clientRooms[client.id] = roomName;
     client.emit("gameCode", roomName);
 
     state[roomName] = initGame();
-
     client.join(roomName);
     client.number = 1;
     client.emit("init", 1);
