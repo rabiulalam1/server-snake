@@ -33,7 +33,7 @@ function createGameState() {
       },
       {
         pos: {
-          x: 18,
+          x: 17,
           y: 10,
         },
         vel: {
@@ -41,9 +41,9 @@ function createGameState() {
           y: 0,
         },
         snake: [
-          { x: 20, y: 10 },
           { x: 19, y: 10 },
           { x: 18, y: 10 },
+          { x: 17, y: 10 },
         ],
         score: 0,
       },
@@ -118,7 +118,7 @@ function gameLoop(state) {
   if (state.food.x === playerOne.pos.x && state.food.y === playerOne.pos.y) {
     playerOne.snake.push({ ...playerOne.pos });
     playerOne.score++;
-    if (playerOne.score == 8) return 1;
+    if (playerOne.score == 10) return 1;
     playerOne.pos.x += playerOne.vel.x;
     playerOne.pos.y += playerOne.vel.y;
     randomFood(state);
@@ -127,7 +127,7 @@ function gameLoop(state) {
   if (state.food.x === playerTwo.pos.x && state.food.y === playerTwo.pos.y) {
     playerTwo.snake.push({ ...playerTwo.pos });
     playerTwo.score++;
-    if (playerTwo.score == 8) return 2;
+    if (playerTwo.score == 10) return 2;
     playerTwo.pos.x += playerTwo.vel.x;
     playerTwo.pos.y += playerTwo.vel.y;
     randomFood(state);

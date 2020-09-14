@@ -25,7 +25,7 @@ io.on("connection", (client) => {
     }
 
     if (numClients === 0) {
-      client.emit("unknownCode");
+      client.emit("unknownRoom");
       return;
     } else if (numClients > 1) {
       client.emit("tooManyPlayers");
@@ -37,10 +37,12 @@ io.on("connection", (client) => {
     client.join(roomName);
     client.number = 2;
     client.emit("init", 2);
-    io.emit("startTimer");
+
+    io.to(roomName).emit("startTimer");
+    //io.emit("startTimer");
     setTimeout(() => {
       startGameInterval(roomName);
-    }, 3500);
+    }, 9500);
     //startGameInterval(roomName);
   }
 
